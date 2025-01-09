@@ -42,6 +42,8 @@ for table in tables:
     cursor.execute(f"""DELETE FROM {table};
     DBCC CHECKIDENT ('{table}', RESEED, 0);""")
 
+cursor.execute("""DBCC FREEPROCCACHE; DBCC DROPCLEANBUFFERS;""")
+
 create_start_time = time.time()
 
 #Wstawianie danych do tabeli
@@ -85,11 +87,4 @@ conn.close()
 
 # SELECT Users.UserID,Users.Username,Users.Email,Posts.PostID,Posts.Content,Posts.MediaURL,Posts.CreatedAt AS PostCreatedAt FROM Users INNER JOIN Posts ON Users.UserID = Posts.UserID ORDER BY Users.UserID, Posts.CreatedAt;
 
-# Delete from Users where UserID > 1;
-
-
-#1. Biblioteka pyodbc jest wolniejsza od tych które dają możliwośc bezpośredniego 
-#   połączenia do bazy danych. pyodbc łaczy się najpierw ze sterownikiem a sterownik 
-#   zarządza połączeniem.
-
-#2. Nigdy nie kopiujemy danych do kolumn z identity(primary key).
+# Delete from Users where UserID = 1;
