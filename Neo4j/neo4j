@@ -1,0 +1,65 @@
+1)
+MATCH (u:User)
+WHERE u.UserID >= 1
+SET u.bio = 'GniBvBEj8MmmlVCPR2XmOoZsr6lNQIdWxcAyHwdXv1kFYEPLfd'
+
+2)
+MATCH (u:User)-[:CREATED_POST]->(p:Post)
+RETURN
+  u.UserID        AS UserID,
+  u.Username      AS Username,
+  u.Email         AS Email,
+  p.post_id       AS PostID,
+  p.content       AS Content,
+  p.media_url     AS MediaURL,
+  p.created_at    AS PostCreatedAt
+ORDER BY UserID, PostCreatedAt
+
+3)
+MATCH (u:User {UserID: 1})
+DETACH DELETE u
+
+4)
+MATCH (n)-[r]->(m)
+RETURN n, r, m
+LIMIT 25
+
+5)
+MATCH (u:User)-[r:CREATED_POST]->(p:Post)
+RETURN u, r, p
+LIMIT 25
+
+6)
+READ
+PROFILE MATCH (u:User {username: 'jamieroberts'})
+RETURN u
+
+7)
+UPDATE
+
+PROFILE MATCH (u:User {username: 'jamieroberts'})
+SET u.email = 'updated_email@example.org',
+u.bio = 'Updated bio for performance testing'
+RETURN u
+
+8)
+INSERT
+PROFILE
+CREATE (u:User {
+    elementId: 18,
+    id: 18,
+    username: 'new_user',
+    email: 'new_user@example.org',
+    password_hash: 'newpasswordhash1234567890abcdef',
+    full_name: 'New User',
+    profile_picture: 'https://dummyimage.com/600x400',
+    bio: 'Bio for new user',
+    created_at: datetime('2023-10-01T10:00:00Z')
+ })
+
+9)
+DELETE
+
+PROFILE
+MATCH (u:User {username: 'new_user'})
+DETACH DELETE u
