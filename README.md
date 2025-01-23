@@ -67,28 +67,8 @@ try:
 except pyodbc.Error as error:
     print(f"Connection failed: {error}")
 
-# CRUD Operation Comparison on Neo4j
-
-This project compares the performance of CRUD operations (Create, Read, Update, Delete) on **Neo4j**. The goal is to analyze the time taken for performing these operations with a similar dataset using Neo4j.
-
-## Requirements
-
-- **Neo4j**: Requires the Neo4j database, along with the `neo4j` Python library for interaction.
-
-### Python Libraries
-
-1. **pandas**: Used for handling large datasets and performing operations like reading CSV files.
-   - Version: `1.5.3`
-
-2. **neo4j**: Used to connect and interact with the Neo4j graph database.
-   - Version: `4.4.0`
-
-3. **faker**: Library for generating fake data, used to create random user and post data.
-   - Version: `15.0.0`
-
-4. **time**: Built-in library for tracking the time of operations.
-   
-5. **time_tracker**: Custom or third-party library for tracking specific time intervals during execution. Ensure it's installed and available in your environment.
+# Insert data and track time
+```
 
 ## Neo4j Script
 
@@ -169,6 +149,5 @@ def execute_cypher_commands(commands, batch_size=10000):
 execute_cypher_commands(user_create_commands)
 
 
-# Example execution
-execute_cypher_commands(user_create_commands)
+
 
