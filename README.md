@@ -67,4 +67,3 @@ try:
 except pyodbc.Error as error:
     print(f"Connection failed: {error}")
 
-# Insert data and track time
